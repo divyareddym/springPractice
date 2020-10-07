@@ -8,9 +8,7 @@ public class Hospital{
 
 	@Autowired
 	Specialist specialist;
-
-	Integer hid;
-
+	
 	public Hospital() {
 		System.out.println("hospitol instantiated >>>");
 	}
