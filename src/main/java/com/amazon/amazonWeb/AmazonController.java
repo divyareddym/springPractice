@@ -59,4 +59,5 @@ public class AmazonController {
 		System.out.println(productId);
 		return amazonService.deleteDetails( productId);
 }
+	//TODO cheking it..
 }
