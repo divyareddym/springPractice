@@ -24,9 +24,19 @@ public class AmazonController {
 	@RequestMapping("/save")
 	public String saveProduct(@RequestBody ProductDetails product) {
 		System.out.println("entered throgh request body"+product.getProductId()+product.getProductCategory()+product.getProductPrice()+product.getProductName()); 	
-		return amazonService.saveProduct(product);
+		String productsaved="";
+		try {
+		 if(product.getProductId()!=null&&product.getProductCategory()!=null&&product.getProductPrice()!=null&&product.getProductName()!=null){
+			productsaved= amazonService.saveProduct(product);
+		}else{
+			productsaved="give proper details";
+		}
+		}catch(Exception e) {
+			productsaved="product already exist enter new product with new details";
+		}
+		return productsaved;
 	}
-	
+
 	@GetMapping("/searchByName/{pname}")
 	public String searchByName(@PathVariable("pname") String productName){
 		System.out.println("productName:"+ productName);
@@ -40,23 +50,23 @@ public class AmazonController {
 		}
 		return result;
 	}
-	
+
 	@GetMapping("/searchAll")
 	public List<ProductDetails> searchAll() {
 		System.out.println();
 		return amazonService.searchAll() ;
 	}
-	
+
 	@PutMapping("/edit")
 	public String editDetails(@RequestParam Integer productPrice,@RequestParam String productName) {
 		System.out.println(productPrice+productName);
 		return amazonService.editDetails(productPrice, productName);
-		
+
 	}
-	
+
 	@DeleteMapping("/delete")
 	public String deleteDetails(@RequestParam Integer productId) {
 		System.out.println(productId);
 		return amazonService.deleteDetails( productId);
-}
+	}
 }
