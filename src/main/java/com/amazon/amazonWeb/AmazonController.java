@@ -70,3 +70,4 @@ public class AmazonController {
 		return amazonService.deleteDetails( productId);
 	}
 }
+	//TODO cheking it..
